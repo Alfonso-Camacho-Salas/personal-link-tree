@@ -1,0 +1,327 @@
+/* ============================================================
+   Alfonso Camacho Salas — Digital Business Card
+   Mobile-first, warm minimalist aesthetic
+   ============================================================ */
+
+/* ── Custom Properties ────────────────────────────────────── */
+:root {
+  --cream:        #F5F0E8;   /* card background */
+  --cream-dark:   #EDE7D9;   /* subtle section separation */
+  --charcoal:     #1E2030;   /* primary text */
+  --navy:         #1A2744;   /* name headline */
+  --mid-grey:     #6B7280;   /* secondary / muted text */
+  --light-grey:   #D1C9BB;   /* borders / dividers */
+  --accent:       #2C4A7A;   /* icon & arrow accent (muted navy) */
+  --whatsapp:     #25A244;   /* WhatsApp brand green */
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  --radius:       12px;
+  --card-gap:     12px;
+  --page-pad:     24px;
+  --max-w:        480px;     /* keeps it card-width on desktop */
+
+  --transition:   0.18s ease;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--page-pad) 40px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.site-header {
+  width: 100%;
+  max-width: var(--max-w);
+  text-align: center;
+  padding: 52px 0 32px;
+}
+
+.label-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid-grey);
+  margin-bottom: 20px;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 7vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.name-highlight {
+  /* subtle weight contrast on surname */
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid-grey);
+  margin-bottom: 22px;
+}
+
+.header-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--light-grey);
+  margin: 0 auto 22px;
+  border-radius: 2px;
+}
+
+.institution {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 3px;
+}
+
+.campus {
+  font-size: 0.75rem;
+  color: var(--mid-grey);
+}
+
+/* ── Links Section ────────────────────────────────────────── */
+.links-section {
+  width: 100%;
+  max-width: var(--max-w);
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  margin-top: 12px;
+}
+
+.links-label {
+  font-size: 0.63rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid-grey);
+  margin-bottom: 4px;
+}
+
+/* ── Link Card ────────────────────────────────────────────── */
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: #FFFFFF;
+  border: 1px solid var(--light-grey);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform var(--transition),
+              box-shadow var(--transition),
+              border-color var(--transition),
+              background var(--transition);
+  /* hardware-accelerated tap feedback on mobile */
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
+}
+
+.link-card:hover,
+.link-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(30, 32, 48, 0.09);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.link-card:active {
+  transform: translateY(0);
+  box-shadow: none;
+  background: var(--cream-dark);
+}
+
+/* ── WhatsApp card variant ────────────────────────────────── */
+.link-card--whatsapp .card-icon {
+  color: var(--whatsapp);
+}
+
+.link-card--whatsapp:hover,
+.link-card--whatsapp:focus-visible {
+  border-color: var(--whatsapp);
+}
+
+/* ── Card internals ───────────────────────────────────────── */
+.card-icon {
+  flex-shrink: 0;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--cream);
+  border-radius: 10px;
+  transition: background var(--transition);
+}
+
+.link-card:hover .card-icon {
+  background: var(--cream-dark);
+}
+
+.card-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+.card-sub {
+  font-size: 0.73rem;
+  color: var(--mid-grey);
+  font-weight: 400;
+}
+
+.card-arrow {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  color: var(--light-grey);
+  transition: color var(--transition), transform var(--transition);
+}
+
+.link-card:hover .card-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.site-footer {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-top: 44px;
+  padding-top: 28px;
+  border-top: 1px solid var(--light-grey);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-label {
+  font-size: 0.63rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid-grey);
+  margin-bottom: 8px;
+}
+
+.footer-address {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.footer-institution {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.footer-addr-line {
+  font-size: 0.75rem;
+  color: var(--mid-grey);
+}
+
+.footer-phone {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+
+.footer-phone:hover {
+  border-bottom-color: var(--accent);
+}
+
+.footer-email-note {
+  font-size: 0.72rem;
+  color: var(--mid-grey);
+  margin-top: 2px;
+}
+
+.footer-copy {
+  font-size: 0.65rem;
+  color: var(--light-grey);
+  margin-top: 16px;
+  letter-spacing: 0.05em;
+}
+
+/* ── Desktop refinements ──────────────────────────────────── */
+@media (min-width: 540px) {
+  .site-header {
+    padding-top: 64px;
+  }
+
+  .link-card {
+    padding: 20px 24px;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .link-card,
+  .card-icon,
+  .card-arrow,
+  .footer-phone {
+    transition: none;
+  }
+
+  .link-card:hover {
+    transform: none;
+  }
+}
